@@ -1,7 +1,7 @@
 # 🛍️ Tienda Online
 
 Proyecto académico desarrollado en **Android Studio con Kotlin** como parte de la asignatura **Desarrollo de Aplicaciones Móviles Nativas**.  
-El objetivo de este trabajo es diseñar y construir las **interfaces gráficas** de una aplicación de tienda virtual (versión no funcional por ahora).
+El objetivo de este trabajo es diseñar y construir las **interfaces gráficas** de una aplicación de tienda virtual.
 
 ---
 
