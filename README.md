@@ -8,8 +8,7 @@ El objetivo de este trabajo es diseñar y construir las **interfaces gráficas**
 ## 📱 Descripción del Proyecto
 
 **TiendaOnline** es una aplicación móvil Android que representa el diseño visual de una tienda virtual moderna.  
-Permite al usuario navegar entre distintas pantallas de la app, simulando una experiencia de compra.  
-👉 Actualmente **solo se desarrollaron las interfaces gráficas**, sin conexión a base de datos ni funcionalidades activas.  
+Permite al usuario navegar entre distintas pantallas de la app, simulando una experiencia de compra. 
 
 Las pantallas incluidas son:
 
