@@ -4,35 +4,43 @@
 
     <application
         android:allowBackup="true"
-        android:label="Tienda Online"
+        android:label="Bella Store"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Tienda">
+        android:theme="@style/Theme.TiendaOnline">
 
-        <!-- Pantallas del menú -->
+        <!-- 🌈 Pantallas del menú -->
         <activity android:name=".ShopActivity" />
         <activity android:name=".OrdersActivity" />
         <activity android:name=".SettingsActivity" />
 
-        <!-- Pantalla de perfil -->
+        <!-- 👤 Pantalla de perfil -->
         <activity android:name=".ProfileActivity" />
 
-        <!-- Pantallas de autenticación -->
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".WelcomeActivity" />
+        <!-- 🔐 Pantallas de autenticación (sin ActionBar) -->
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/Theme.TiendaOnline.NoActionBar" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.TiendaOnline.NoActionBar" />
 
-        <!-- Pantalla de inicio (Splash) -->
+        <!-- 👋 Pantalla de bienvenida (sin ActionBar) -->
+        <activity
+            android:name=".WelcomeActivity"
+            android:theme="@style/Theme.TiendaOnline.NoActionBar" />
+
+        <!-- 🚀 Pantalla de inicio (Splash) -->
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.TiendaOnline.NoActionBar">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
     </application>
