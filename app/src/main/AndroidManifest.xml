@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rubentrivino.tiendaonline">
 
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
     <application
         android:allowBackup="true"
         android:label="Bella Store"
@@ -10,33 +15,72 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TiendaOnline">
 
-        <!-- 🌈 Pantallas del menú -->
-        <activity android:name=".ShopActivity" />
-        <activity android:name=".OrdersActivity" />
-        <activity android:name=".SettingsActivity" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
-        <!-- 👤 Pantalla de perfil -->
-        <activity android:name=".ProfileActivity" />
-
-        <!-- 🔐 Pantallas de autenticación (sin ActionBar) -->
+        <activity
+            android:name=".ShopActivity"
+            android:exported="false"
+            android:excludeFromRecents="true" />
+        <activity
+            android:name=".OrdersActivity"
+            android:exported="false"
+            android:label="@string/title_cart"
+            android:excludeFromRecents="true" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BeautyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PedidosActivity"
+            android:exported="false"
+            android:label="@string/title_mis_compras" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/Theme.TiendaOnline.NoActionBar" />
+            android:theme="@style/Theme.TiendaOnline.NoActionBar"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.TiendaOnline.NoActionBar" />
-
-        <!-- 👋 Pantalla de bienvenida (sin ActionBar) -->
+            android:theme="@style/Theme.TiendaOnline.NoActionBar"
+            android:exported="false" />
         <activity
             android:name=".WelcomeActivity"
-            android:theme="@style/Theme.TiendaOnline.NoActionBar" />
-
-        <!-- 🚀 Pantalla de inicio (Splash) -->
+            android:theme="@style/Theme.TiendaOnline.NoActionBar"
+            android:exported="false" />
+        <activity
+            android:name=".ProductDetailActivity"
+            android:exported="false"
+            android:label="Detalle del producto"
+            android:parentActivityName=".ShopActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ShopActivity" />
+        </activity>
+        <activity
+            android:name=".ProductFormActivity"
+            android:exported="false"
+            android:label="Producto"
+            android:parentActivityName=".ShopActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ShopActivity" />
+        </activity>
         <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.TiendaOnline.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -44,5 +88,4 @@
         </activity>
 
     </application>
-
 </manifest>

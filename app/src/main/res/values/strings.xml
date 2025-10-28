@@ -1,8 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tienda Online</string>
+    <!-- App -->
+    <string name="app_name">Bella Store</string>
     <string name="welcome">¡Bienvenido a Tienda Virtual!</string>
     <string name="splash_sub">Todo lo que necesitas en un solo lugar</string>
+
+    <!-- Autenticación -->
     <string name="register">Registrarse</string>
     <string name="login">Iniciar sesión</string>
+
+    <!-- Perfil / Pantallas -->
     <string name="profile">Perfil</string>
+    <string name="title_mis_compras">Mis compras</string>
+    <string name="title_cart">Carrito</string>
+
+    <!-- Preferencias de configuración -->
+    <string name="pref_cat_regional">Regional</string>
+    <string name="pref_language_title">Idioma</string>
+    <string name="pref_language_summary">Cambia el idioma de la app</string>
+
+    <!-- Pantalla principal -->
+    <string name="home_welcome">Bienvenido, Usuario</string>
+    <string name="home_shop">🛒 Ir de compras</string>
+    <string name="home_orders">📦 Mis pedidos</string>
+    <string name="home_purchases">🧾 Mis compras</string>
+    <string name="home_settings">⚙️ Configuración</string>
+    <string name="home_beauty">💅 Servicios de Belleza</string>
+    <string name="home_logout">Cerrar sesión</string>
+
+    <!-- Pantalla de configuración -->
+    <string name="settings_title">⚙️ Configuración</string>
+    <string name="settings_subtitle">Personaliza tu experiencia: idioma, tema, notificaciones y más.</string>
+    <string name="settings_footer">🌍 Bella Store - Configuración Global</string>
 </resources>

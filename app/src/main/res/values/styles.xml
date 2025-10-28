@@ -1,8 +1,18 @@
 <resources>
-    <style name="Theme.Tienda" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="android:statusBarColor">@color/purple_700</item>
+    <!-- tu Theme.Tienda aquí ... -->
+
+    <!-- Estilo real -->
+    <style name="Chip.Bella">
+        <item name="android:background">@drawable/bg_chip</item>
+        <item name="android:textColor">#1A237E</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:textStyle">bold</item>
     </style>
+
+    <!-- Alias para que style/Chip apunte al anterior -->
+    <style name="Chip" parent="@style/Chip.Bella"/>
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -12,21 +12,21 @@
         android:id="@+id/tvWelcome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bienvenido, Usuario"
+        android:text="@string/home_welcome"
         android:textSize="22sp"
         android:textStyle="bold"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:layout_marginBottom="32dp"
-        android:layout_marginTop="100dp" />
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="32dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardShop"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginBottom="20dp"
-        card_view:cardCornerRadius="16dp"
-        card_view:cardElevation="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
         android:backgroundTint="#FFFFFF"
         android:alpha="0.95">
 
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="🛒 Ir de compras"
+            android:text="@string/home_shop"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#4CAF50" />
@@ -45,28 +45,50 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginBottom="20dp"
-        card_view:cardCornerRadius="16dp"
-        card_view:cardElevation="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
         android:backgroundTint="#FFFFFF"
-        android:alpha="0.95">
+        android:alpha="0.95"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="📦 Mis pedidos"
+            android:text="@string/home_orders"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#2196F3" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardPurchases"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:backgroundTint="#FFFFFF"
+        android:alpha="0.95">
+
+        <TextView
+            android:id="@+id/lblPurchases"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/home_purchases"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#3F51B5" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardSettings"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginBottom="30dp"
-        card_view:cardCornerRadius="16dp"
-        card_view:cardElevation="8dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
         android:backgroundTint="#FFFFFF"
         android:alpha="0.95">
 
@@ -74,20 +96,40 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="⚙️ Configuración"
+            android:text="@string/home_settings"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#FF9800" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardBeauty"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="30dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:backgroundTint="#FFFFFF"
+        android:alpha="0.95">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/home_beauty"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#9C27B0" />
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cerrar sesión"
-        android:backgroundTint="#E53935"
-        android:textColor="#FFFFFF"
+        android:text="@string/home_logout"
         android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#E53935"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="20dp" />
 

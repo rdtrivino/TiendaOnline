@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Configuraciones generales">
+
+        <SwitchPreferenceCompat
+            android:key="pref_notifications"
+            android:title="Notificaciones"
+            android:summary="Activa o desactiva las notificaciones"
+            android:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            android:key="pref_dark_mode"
+            android:title="Modo oscuro"
+            android:summary="Cambia entre modo claro y oscuro"
+            android:defaultValue="false" />
+
+        <Preference
+            android:key="pref_privacy"
+            android:title="Política de privacidad"
+            android:summary="Consulta las políticas de uso y privacidad" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

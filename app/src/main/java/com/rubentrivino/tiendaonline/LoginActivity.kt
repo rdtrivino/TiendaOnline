@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONArray
+import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 
@@ -18,6 +19,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         preferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+
+        seedUsersIfEmpty()
 
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
@@ -32,14 +35,14 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val userListJson = preferences.getString("users_list", "[]")
+            val userListJson = preferences.getString("users_list", "[]") ?: "[]"
             val userArray = JSONArray(userListJson)
 
             var userFound = false
-
             for (i in 0 until userArray.length()) {
                 val userObj = userArray.getJSONObject(i)
-                if (userObj.getString("email") == email && userObj.getString("password") == password) {
+                if (userObj.getString("email").equals(email, ignoreCase = true) &&
+                    userObj.getString("password") == password) {
                     userFound = true
                     break
                 }
@@ -47,19 +50,41 @@ class LoginActivity : AppCompatActivity() {
 
             if (userFound) {
                 Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
+                val isAdmin = email.contains("admin", ignoreCase = true)
 
-                // Guardar el usuario actual para futuras sesiones (opcional)
-                val editor = preferences.edit()
-                editor.putString("current_user", email)
-                editor.apply()
+                preferences.edit()
+                    .putString("current_user", email)
+                    .putBoolean("isAdmin", isAdmin)
+                    .apply()
 
-                // Ir al perfil o pantalla principal
-                val intent = Intent(this, ProfileActivity::class.java)
-                startActivity(intent)
+                getSharedPreferences("app", MODE_PRIVATE)
+                    .edit()
+                    .putBoolean("isAdmin", isAdmin)
+                    .apply()
+
+                startActivity(Intent(this, ProfileActivity::class.java))
                 finish()
             } else {
                 Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun seedUsersIfEmpty() {
+        val raw = preferences.getString("users_list", "[]") ?: "[]"
+        val arr = JSONArray(raw)
+        if (arr.length() == 0) {
+            val admin = JSONObject().apply {
+                put("email", "admin@tienda.com")
+                put("password", "123456")
+            }
+            val demo = JSONObject().apply {
+                put("email", "demo@tienda.com")
+                put("password", "123456")
+            }
+            arr.put(admin)
+            arr.put(demo)
+            preferences.edit().putString("users_list", arr.toString()).apply()
         }
     }
 }

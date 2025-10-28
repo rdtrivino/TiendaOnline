@@ -3,9 +3,9 @@ package com.rubentrivino.tiendaonline
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 
@@ -17,46 +17,53 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        // --- Preferencias para obtener el usuario actual ---
         preferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-        val email = preferences.getString("current_user", "Usuario")
+        val emailPref = preferences.getString("current_user", null)
+        if (emailPref.isNullOrBlank()) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+            return
+        }
+        val email = emailPref
 
-        // --- Referencias UI ---
         val tvWelcome = findViewById<TextView>(R.id.tvWelcome)
         val btnLogout = findViewById<Button>(R.id.btnLogout)
         val cardShop = findViewById<CardView>(R.id.cardShop)
         val cardOrders = findViewById<CardView>(R.id.cardOrders)
+        val cardPurchases = findViewById<CardView>(R.id.cardPurchases)
         val cardSettings = findViewById<CardView>(R.id.cardSettings)
+        val cardBeauty = findViewById<CardView>(R.id.cardBeauty)
 
-        // --- Texto de bienvenida ---
         tvWelcome.text = "¡Bienvenido, $email!"
 
-        // --- Menú de navegación ---
+        val isAdmin = email.contains("admin", ignoreCase = true)
+        preferences.edit().putBoolean("isAdmin", isAdmin).apply()
+        getSharedPreferences("app", MODE_PRIVATE).edit().putBoolean("isAdmin", isAdmin).apply()
+
         cardShop.setOnClickListener {
-            Toast.makeText(this, "🛒 Ir de compras (en construcción)", Toast.LENGTH_SHORT).show()
-            // startActivity(Intent(this, ShopActivity::class.java))
+            startActivity(
+                Intent(this, ShopActivity::class.java)
+                    .putExtra("email", email)
+                    .putExtra("isAdmin", isAdmin)
+            )
         }
-
-        cardOrders.setOnClickListener {
-            Toast.makeText(this, "📦 Mis pedidos (en construcción)", Toast.LENGTH_SHORT).show()
-            // startActivity(Intent(this, OrdersActivity::class.java))
-        }
-
         cardSettings.setOnClickListener {
-            Toast.makeText(this, "⚙️ Configuración (en construcción)", Toast.LENGTH_SHORT).show()
-            // startActivity(Intent(this, SettingsActivity::class.java))
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
+        cardBeauty.setOnClickListener {
+            startActivity(Intent(this, BeautyActivity::class.java))
+        }
+        cardPurchases.setOnClickListener {
+            startActivity(Intent(this, PedidosActivity::class.java))
         }
 
-        // --- Botón para cerrar sesión ---
+        cardOrders.visibility = View.GONE
+        cardOrders.setOnClickListener(null)
+
         btnLogout.setOnClickListener {
-            val editor = preferences.edit()
-            editor.remove("current_user")
-            editor.apply()
-
-            Toast.makeText(this, "Sesión cerrada correctamente", Toast.LENGTH_SHORT).show()
-
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            preferences.edit().clear().apply()
+            getSharedPreferences("app", MODE_PRIVATE).edit().clear().apply()
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
     }

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_card"
+    android:padding="10dp"
+    android:layout_marginBottom="10dp"
+    android:elevation="3dp"
+    android:clipToOutline="true">
+
+    <ImageView
+        android:id="@+id/imgProduct"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/img_bg_round"
+        android:layout_marginEnd="12dp"
+        android:src="@mipmap/ic_launcher_round" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre del producto"
+            android:textStyle="bold"
+            android:textColor="#222"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txtPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$12.000  •  Subtotal: $24.000"
+            android:textColor="#2E7D32"
+            android:textSize="14sp"
+            android:maxLines="2"
+            android:layout_marginTop="2dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/btnDec"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="-"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#607D8B" />
+
+            <TextView
+                android:id="@+id/txtQty"
+                android:layout_width="48dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:text="1"
+                android:textStyle="bold"
+                android:textColor="#000" />
+
+            <Button
+                android:id="@+id/btnInc"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="+"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#607D8B" />
+
+            <Button
+                android:id="@+id/btnRemove"
+                android:layout_width="40dp"
+                android:layout_height="36dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="🗑️"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="#E53935" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

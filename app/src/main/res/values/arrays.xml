@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 🌍 Idiomas disponibles en el selector -->
+    <string-array name="pref_language_entries">
+        <item>Español</item>
+        <item>English</item>
+        <item>Português (Brasil)</item>
+        <item>Français</item>
+    </string-array>
+
+    <!-- 🏷️ Códigos BCP-47 correspondientes -->
+    <string-array name="pref_language_values">
+        <item>es</item>
+        <item>en</item>
+        <item>pt-BR</item>
+        <item>fr</item>
+    </string-array>
+</resources>

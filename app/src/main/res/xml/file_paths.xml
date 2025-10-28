@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Copias locales en /data/data/<package>/files/images/ -->
+    <files-path name="images" path="images/" />
+</paths>
