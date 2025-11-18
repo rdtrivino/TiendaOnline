@@ -32,4 +32,8 @@
     <string name="settings_title">⚙️ Configuración</string>
     <string name="settings_subtitle">Personaliza tu experiencia: idioma, tema, notificaciones y más.</string>
     <string name="settings_footer">🌍 Bella Store - Configuración Global</string>
+
+    <!-- 🔹 API KEY de Google Maps -->
+    <string name="google_maps_key">AIzaSyDUP4yVvgdtcTjTgKoFCdVvbfY7gBwPFXk</string>
+
 </resources>

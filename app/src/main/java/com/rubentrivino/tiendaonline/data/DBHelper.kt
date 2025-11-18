@@ -5,7 +5,7 @@ import android.database.DatabaseUtils
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DBHelper(context: Context) : SQLiteOpenHelper(context, "tienda.db", null, 10) {
+class DBHelper(context: Context) : SQLiteOpenHelper(context, "tienda.db", null, 11) {
 
     override fun onConfigure(db: SQLiteDatabase) {
         db.setForeignKeyConstraintsEnabled(true)
@@ -67,7 +67,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "tienda.db", null, 
                 name TEXT NOT NULL,
                 price REAL NOT NULL,
                 qty INTEGER NOT NULL,
-                FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE,
+                FOREIGN KEY(order_id) REFERENCES products(id) ON DELETE CASCADE,
                 FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE RESTRICT
             )
             """.trimIndent()
@@ -76,10 +76,30 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "tienda.db", null, 
         db.execSQL("CREATE INDEX IF NOT EXISTS idx_order_items_order ON order_items(order_id)")
         db.execSQL("CREATE INDEX IF NOT EXISTS idx_order_items_product ON order_items(product_id)")
 
+        // 🔹 NUEVA TABLA: AGENDAMIENTOS (para cámara + geolocalización)
+        db.execSQL(
+            """
+            CREATE TABLE IF NOT EXISTS agendamientos(
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                titulo TEXT NOT NULL,
+                fecha TEXT NOT NULL,
+                hora TEXT NOT NULL,
+                descripcion TEXT,
+                latitud REAL,
+                longitud REAL,
+                foto_uri TEXT,
+                created_at INTEGER NOT NULL
+            )
+            """.trimIndent()
+        )
+
+        db.execSQL("CREATE INDEX IF NOT EXISTS idx_agendamientos_created ON agendamientos(created_at)")
+
         seedBeauty(db)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        // columnas nuevas en products (ya lo tenías)
         try { db.execSQL("ALTER TABLE products ADD COLUMN favorite INTEGER DEFAULT 0") } catch (_: Exception) {}
         try { db.execSQL("ALTER TABLE products ADD COLUMN rating REAL DEFAULT 4.5") } catch (_: Exception) {}
 
@@ -118,6 +138,27 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "tienda.db", null, 
             db.execSQL("CREATE INDEX IF NOT EXISTS idx_orders_status ON orders(status)")
             db.execSQL("CREATE INDEX IF NOT EXISTS idx_order_items_order ON order_items(order_id)")
             db.execSQL("CREATE INDEX IF NOT EXISTS idx_order_items_product ON order_items(product_id)")
+        }
+
+        // 🔹 UPGRADE A LA VERSIÓN 11: crear tabla de agendamientos si no existe
+        if (oldVersion < 11) {
+            db.execSQL(
+                """
+                CREATE TABLE IF NOT EXISTS agendamientos(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    titulo TEXT NOT NULL,
+                    fecha TEXT NOT NULL,
+                    hora TEXT NOT NULL,
+                    descripcion TEXT,
+                    latitud REAL,
+                    longitud REAL,
+                    foto_uri TEXT,
+                    created_at INTEGER NOT NULL
+                )
+                """.trimIndent()
+            )
+
+            db.execSQL("CREATE INDEX IF NOT EXISTS idx_agendamientos_created ON agendamientos(created_at)")
         }
 
         seedBeauty(db)

@@ -2,7 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rubentrivino.tiendaonline">
 
+    <!-- 🔹 Ubicación -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- 🔹 Cámara -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- 🔹 Fotos / galería (Android 13+) -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <!-- Opcional: para Android 12 e inferiores -->
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -15,6 +25,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TiendaOnline">
 
+        <!-- 🔹 API KEY de Google Maps -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <!-- 🔹 FileProvider para manejar fotos de cámara -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -25,40 +41,74 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <!-- 🔹 Selector de ubicación en mapa -->
+        <activity
+            android:name=".MapPickerActivity"
+            android:exported="false" />
+
+        <!-- 🔹 Listado de agendamientos (ADMIN: Servicios de belleza) -->
+        <activity
+            android:name=".BeautyOrdersActivity"
+            android:exported="false" />
+
+        <!-- 🔹 Detalle del agendamiento (ADMIN) -->
+        <activity
+            android:name=".BeautyOrderDetailActivity"
+            android:exported="false" />
+
+        <!-- 🔹 Pantalla de compras / catálogo -->
         <activity
             android:name=".ShopActivity"
             android:exported="false"
             android:excludeFromRecents="true" />
+
+        <!-- 🔹 Carrito / pedidos -->
         <activity
             android:name=".OrdersActivity"
             android:exported="false"
             android:label="@string/title_cart"
             android:excludeFromRecents="true" />
+
+        <!-- 🔹 Configuración -->
         <activity
             android:name=".SettingsActivity"
             android:exported="false" />
+
+        <!-- 🔹 Formulario de agendamiento de servicios de belleza (usuario) -->
         <activity
             android:name=".BeautyActivity"
             android:exported="false" />
+
+        <!-- 🔹 Perfil -->
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
+
+        <!-- 🔹 Histórico de compras -->
         <activity
             android:name=".PedidosActivity"
             android:exported="false"
             android:label="@string/title_mis_compras" />
+
+        <!-- 🔹 Registro -->
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/Theme.TiendaOnline.NoActionBar"
             android:exported="false" />
+
+        <!-- 🔹 Login -->
         <activity
             android:name=".LoginActivity"
             android:theme="@style/Theme.TiendaOnline.NoActionBar"
             android:exported="false" />
+
+        <!-- 🔹 Bienvenida -->
         <activity
             android:name=".WelcomeActivity"
             android:theme="@style/Theme.TiendaOnline.NoActionBar"
             android:exported="false" />
+
+        <!-- 🔹 Detalle de producto -->
         <activity
             android:name=".ProductDetailActivity"
             android:exported="false"
@@ -68,6 +118,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ShopActivity" />
         </activity>
+
+        <!-- 🔹 Formulario de producto (crear / editar) -->
         <activity
             android:name=".ProductFormActivity"
             android:exported="false"
@@ -77,6 +129,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ShopActivity" />
         </activity>
+
+        <!-- 🔹 Splash (launcher) -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"

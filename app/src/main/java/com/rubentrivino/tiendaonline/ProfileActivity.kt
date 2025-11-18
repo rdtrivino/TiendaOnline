@@ -36,6 +36,7 @@ class ProfileActivity : AppCompatActivity() {
 
         tvWelcome.text = "¡Bienvenido, $email!"
 
+        // Determinar si es administrador según el correo
         val isAdmin = email.contains("admin", ignoreCase = true)
         preferences.edit().putBoolean("isAdmin", isAdmin).apply()
         getSharedPreferences("app", MODE_PRIVATE).edit().putBoolean("isAdmin", isAdmin).apply()
@@ -47,16 +48,27 @@ class ProfileActivity : AppCompatActivity() {
                     .putExtra("isAdmin", isAdmin)
             )
         }
+
         cardSettings.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
+
+        // 🔹 Servicios de belleza:
+        // Admin -> lista de agendamientos
+        // Usuario normal -> formulario para crear agendamiento
         cardBeauty.setOnClickListener {
-            startActivity(Intent(this, BeautyActivity::class.java))
+            if (isAdmin) {
+                startActivity(Intent(this, BeautyOrdersActivity::class.java))
+            } else {
+                startActivity(Intent(this, BeautyActivity::class.java))
+            }
         }
+
         cardPurchases.setOnClickListener {
             startActivity(Intent(this, PedidosActivity::class.java))
         }
 
+        // Ocultamos cardOrders (no se usa)
         cardOrders.visibility = View.GONE
         cardOrders.setOnClickListener(null)
 

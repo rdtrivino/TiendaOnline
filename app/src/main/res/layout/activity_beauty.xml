@@ -10,12 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Título general -->
         <TextView
             android:text="💅 Servicios de Belleza a Domicilio"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -26,6 +27,119 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <!-- Servicio (lista desplegable) -->
+        <TextView
+            android:text="Servicio"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp" />
+
+        <Spinner
+            android:id="@+id/spServicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Fecha -->
+        <TextView
+            android:text="Fecha"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etFecha"
+            android:hint="Selecciona la fecha"
+            android:focusable="false"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Hora -->
+        <TextView
+            android:text="Hora"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etHora"
+            android:hint="Selecciona la hora"
+            android:focusable="false"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Descripción -->
+        <TextView
+            android:text="Detalles del servicio"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etDescripcion"
+            android:hint="Instrucciones para la profesional (dirección, referencias, etc.)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="3"
+            android:gravity="top"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Sección de Geolocalización -->
+        <TextView
+            android:text="Ubicación del servicio"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp" />
+
+        <Button
+            android:id="@+id/btnUbicacion"
+            android:text="Obtener ubicación actual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvUbicacion"
+            android:text="Lat: -   |   Lon: -"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Sección de Cámara -->
+        <TextView
+            android:text="Foto de referencia del lugar o producto"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp" />
+
+        <Button
+            android:id="@+id/btnFoto"
+            android:text="Tomar foto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/imgFoto"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"
+            android:scaleType="centerCrop"
+            android:background="#EEEEEE" />
+
+        <!-- Botón final de agendamiento -->
         <Button
             android:id="@+id/btnReservar"
             android:text="Agendar servicio"
